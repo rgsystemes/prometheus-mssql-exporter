@@ -14,8 +14,9 @@ let config = {
         password: process.env["PASSWORD"],
         options: {
             port: process.env["PORT"] || 1433,
-            encrypt: true,
-            rowCollectionOnRequestCompletion: true
+            rowCollectionOnRequestCompletion: true,
+            encrypt: process.env["ENCRYPT"] || false,
+            tdsVersion: process.env["TDS_VERSION"] || '7_3_A'
         }
     },
     port: process.env["EXPOSE"] || 4000
@@ -30,6 +31,8 @@ if (!config.connect.userName) {
 if (!config.connect.password) {
     throw new Error("Missing PASSWORD information")
 }
+
+console.log("tedious.Connection : " + config.connect);
 
 /**
  * Connects to a database server and if successful starts the metrics collection interval.
