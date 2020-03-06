@@ -32,7 +32,7 @@ if (!config.connect.password) {
     throw new Error("Missing PASSWORD information")
 }
 
-console.log("tedious.Connection : " + config);
+console.log("tedious.Connection : " + config.connect);
 
 /**
  * Connects to a database server and if successful starts the metrics collection interval.
